@@ -1,7 +1,7 @@
-import { Router } from 'express';
+import { Router } from 'express'
 
-const routes = Router();
+// import ensureAuthenticated from '../middlewares/ensureAuthenticated'
 
-routes.get('/', (request, response) => response.json({ message: 'Welcome to poject' }));
+const routes = Router()
 
-export default routes;
+export default routes

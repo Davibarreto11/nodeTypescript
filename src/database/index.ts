@@ -1,9 +1,10 @@
 import { DataSource } from 'typeorm'
 
 import CreateAppointments1695957180602 from './migrations/1696009232692-CreateAppointments'
-import { CreateUsers1696019680697 } from './migrations/1696019680697-CreateUsers'
+import { CreateUsers1696019680697 } from './migrations/1695019680691-CreateUsers'
 
 import Appointment from '../models/Appointment'
+import User from '../models/User'
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -14,10 +15,10 @@ export const AppDataSource = new DataSource({
   database: 'gostack11',
   synchronize: true,
   logging: false,
-  entities: [Appointment],
+  entities: [Appointment, User],
   migrations: [
-    CreateAppointments1695957180602,
-    CreateUsers1696019680697
+    CreateUsers1696019680697,
+    CreateAppointments1695957180602
   ]
 })
 

@@ -3,22 +3,22 @@ import { AppDataSource } from '../database'
 import Appointment from '../models/Appointment'
 
 interface RequestBet {
-  provider: string
+  provider_id: string
   date: Date
 }
 
 class CreateBetService {
-  public async execute ({ date, provider }: RequestBet): Promise<Appointment> {
-    const betsRepository = AppDataSource.getRepository(Appointment)
+  public async execute ({ date, provider_id }: RequestBet): Promise<Appointment> {
+    const appointmentsRepository = AppDataSource.getRepository(Appointment)
 
     const dateNow = new Date()
 
-    const appointment = betsRepository.create({
+    const appointment = appointmentsRepository.create({
       date: dateNow,
-      provider
+      provider_id
     })
 
-    await betsRepository.save(appointment)
+    await appointmentsRepository.save(appointment)
 
     return appointment
   }

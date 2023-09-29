@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm'
 
 import CreateAppointments1695957180602 from './migrations/1696009232692-CreateAppointments'
+import { CreateUsers1696019680697 } from './migrations/1696019680697-CreateUsers'
 
 import Appointment from '../models/Appointment'
 
@@ -15,7 +16,8 @@ export const AppDataSource = new DataSource({
   logging: false,
   entities: [Appointment],
   migrations: [
-    CreateAppointments1695957180602
+    CreateAppointments1695957180602,
+    CreateUsers1696019680697
   ]
 })
 

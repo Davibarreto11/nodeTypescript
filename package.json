@@ -1,9 +1,16 @@
 {
-  "name": "nodeTypescript",
+  "name": "nodetypescript",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev:server": "ts-node-dev src/server.ts"
+  },
   "devDependencies": {
-    "git-commit-msg-linter": "^5.0.4"
+    "@types/node": "^20.7.1",
+    "git-commit-msg-linter": "^5.0.4",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.2.2"
   }
 }

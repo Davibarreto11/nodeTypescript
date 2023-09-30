@@ -4,7 +4,11 @@ import { AppDataSource } from '../database'
 import appointment from '../models/Appointment'
 import CreateappointmentService from '../services/CreateAppointmentService'
 
+import ensureAuthenticated from '../middlewares/ensureAuthenticated'
+
 const appointmentsRouter = Router()
+
+appointmentsRouter.use(ensureAuthenticated)
 
 appointmentsRouter.get('/', async (request, response) => {
   const appointmentsRepository = AppDataSource.getRepository(appointment)

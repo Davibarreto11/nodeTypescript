@@ -1,9 +1,10 @@
 import { Router } from 'express'
 
-// import ensureAuthenticated from '../middlewares/ensureAuthenticated'
 import appointmentsRouter from './appointments.routes'
 import usersRouter from './users.routes'
 import sessionsRouter from './sessions.routes'
+
+// import ensureAuthenticated from '../middlewares/ensureAuthenticated'
 
 const routes = Router()
 

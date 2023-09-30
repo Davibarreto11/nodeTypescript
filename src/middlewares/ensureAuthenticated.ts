@@ -5,11 +5,11 @@ import authConfig from '../config/auth'
 
 import AppError from '../errors/AppError'
 
-interface TokenPayload {
-  iat: number
-  exp: number
-  sub: string
-}
+// interface TokenPayload {
+//   iat: number
+//   exp: number
+//   sub: string
+// }
 
 export default function ensureAuthenticated (
   request: Request,
@@ -25,13 +25,7 @@ export default function ensureAuthenticated (
   const [, token] = authHeader.split(' ')
 
   try {
-    const decoded = verify(token, authConfig.jwt.secret)
-
-    const { sub } = decoded as TokenPayload
-
-    request.user = {
-      id: sub
-    }
+    verify(token, authConfig.jwt.secret)
 
     next()
   } catch (err) {

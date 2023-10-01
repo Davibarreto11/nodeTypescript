@@ -14,7 +14,7 @@ export const AppDataSource = new DataSource({
   username: 'postgres',
   password: 'docker',
   database: 'gostack11',
-  synchronize: true,
+  synchronize: false,
   logging: false,
   entities: [Appointment, User],
   migrations: [

@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import UsersRepository from '../../typeorm/repositories/UserRepository'
+import UsersRepository from '../../typeorm/repositories/UsersRepository'
 import AuthenticateUserService from '../../../services/AuthenticateUserService'
 
 const sessionsRouter = Router()

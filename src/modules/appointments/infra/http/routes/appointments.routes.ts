@@ -1,21 +1,21 @@
 import { Router } from 'express'
-import { AppDataSource } from '../../../../../shared/infra/database'
 
-import appointment from '../../typeorm/entities/Appointment'
 import CreateappointmentService from '../../../services/CreateAppointmentService'
+
+import AppointmentsRepository from '../../typeorm/repositories/AppointmentsRepository'
 
 import ensureAuthenticated from '../../../../users/infra/http/middlewares/ensureAuthenticated'
 
 const appointmentsRouter = Router()
+const appointmentsRepository = new AppointmentsRepository()
 
 appointmentsRouter.use(ensureAuthenticated)
 
-appointmentsRouter.get('/', async (request, response) => {
-  const appointmentsRepository = AppDataSource.getRepository(appointment)
-  const appointments = await appointmentsRepository.find()
+// appointmentsRouter.get('/', async (request, response) => {
+//   const appointments = await appointmentsRepository.find()
 
-  return response.json(appointments)
-})
+//   return response.json(appointments)
+// })
 
 appointmentsRouter.post('/', async (request, response) => {
   const {
@@ -23,7 +23,7 @@ appointmentsRouter.post('/', async (request, response) => {
     provider_id
   } = request.body
 
-  const createappointment = new CreateappointmentService()
+  const createappointment = new CreateappointmentService(appointmentsRepository)
 
   const appointment = await createappointment.execute({
     date,

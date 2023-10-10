@@ -1,10 +1,10 @@
 import { Router } from 'express'
-import { AppDataSource } from '../../database'
+import { AppDataSource } from '../../../../../shared/infra/database'
 
-import appointment from '../../../../modules/appointments/infra/typeorm/entities/Appointment'
-import CreateappointmentService from '../../../../modules/appointments/services/CreateAppointmentService'
+import appointment from '../../typeorm/entities/Appointment'
+import CreateappointmentService from '../../../services/CreateAppointmentService'
 
-import ensureAuthenticated from '../middlewares/ensureAuthenticated'
+import ensureAuthenticated from '../../../../users/infra/http/middlewares/ensureAuthenticated'
 
 const appointmentsRouter = Router()
 

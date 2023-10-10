@@ -1,11 +1,11 @@
-import { AppDataSource } from '../database'
+import { AppDataSource } from '../../../shared/infra/database'
 import path from 'path'
 import fs from 'fs/promises'
 
-import uploadConfig from '../config/upload'
-import User from '../models/User'
+import uploadConfig from '../../../config/upload'
+import User from '../infra/typeorm/entities/User'
 
-import AppError from '../errors/AppError'
+import AppError from '../../../shared/errors/AppError'
 
 interface Request {
   user_id: string

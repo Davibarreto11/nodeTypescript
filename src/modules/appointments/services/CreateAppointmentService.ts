@@ -1,6 +1,6 @@
-import { AppDataSource } from '../database'
+import { AppDataSource } from '../../../shared/infra/database'
 
-import Appointment from '../models/Appointment'
+import Appointment from '../infra/typeorm/entities/Appointment'
 
 interface RequestBet {
   provider_id: string

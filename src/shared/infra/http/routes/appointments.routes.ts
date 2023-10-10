@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import { AppDataSource } from '../database'
+import { AppDataSource } from '../../database'
 
-import appointment from '../models/Appointment'
-import CreateappointmentService from '../services/CreateAppointmentService'
+import appointment from '../../../../modules/appointments/infra/typeorm/entities/Appointment'
+import CreateappointmentService from '../../../../modules/appointments/services/CreateAppointmentService'
 
 import ensureAuthenticated from '../middlewares/ensureAuthenticated'
 

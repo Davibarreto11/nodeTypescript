@@ -1,13 +1,9 @@
 import { Router } from 'express'
 
-import CreateappointmentService from '../../../services/CreateAppointmentService'
-
-import AppointmentsRepository from '../../typeorm/repositories/AppointmentsRepository'
-
 import ensureAuthenticated from '../../../../users/infra/http/middlewares/ensureAuthenticated'
+import AppointmentsController from '../controllers/AppointmentsController'
 
 const appointmentsRouter = Router()
-const appointmentsRepository = new AppointmentsRepository()
 
 appointmentsRouter.use(ensureAuthenticated)
 
@@ -17,20 +13,6 @@ appointmentsRouter.use(ensureAuthenticated)
 //   return response.json(appointments)
 // })
 
-appointmentsRouter.post('/', async (request, response) => {
-  const {
-    date,
-    provider_id
-  } = request.body
-
-  const createappointment = new CreateappointmentService(appointmentsRepository)
-
-  const appointment = await createappointment.execute({
-    date,
-    provider_id
-  })
-
-  return response.json(appointment)
-})
+appointmentsRouter.post('/', AppointmentsController.create)
 
 export default appointmentsRouter

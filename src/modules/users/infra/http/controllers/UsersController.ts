@@ -1,7 +1,7 @@
 import { type Request, type Response } from 'express'
 
 import UsersRepository from '../../typeorm/repositories/UsersRepository'
-import CreateUserService from '../../../services/CreateUserServiece'
+import CreateUserService from '../../../services/CreateUsersServiece'
 
 const usersRepository = new UsersRepository()
 

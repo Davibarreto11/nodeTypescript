@@ -10,16 +10,16 @@ describe('AuthenticateUserService', () => {
     const autheticateUser = new AuthenticateUserService(fakeUsersRepository)
 
     await createUser.execute({
-      name: 'John Doe',
-      email: 'johndoe@example.com',
+      name: 'Davi Artur',
+      email: 'davi@gmail.com',
       password: '123456'
     })
 
     const response = await autheticateUser.execute({
-      email: 'johndoe@example.com',
+      email: 'davi@gmail.com',
       password: '123456'
     })
 
-    expect(response).toHaveProperty('token')
+    expect(response).toHaveBeenCalledWith(['user', 'token'])
   })
 })

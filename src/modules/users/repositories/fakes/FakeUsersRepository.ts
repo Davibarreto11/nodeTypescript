@@ -8,27 +8,32 @@ import User from '../../infra/typeorm/entities/User'
 class UsersRepository implements IUsersRepository {
   private readonly users: User[] = []
 
-  public async findById (id: string): Promise<User | undefined> {
+  public async findById (id: string): Promise<User | null> {
     const findUser = this.users.find(user => user.id === id)
 
     if (!findUser) {
-      return undefined
+      return null
     }
     return findUser
   }
 
-  public async findByEmail (email: string): Promise<User | undefined> {
+  public async findByEmail (email: string): Promise<User | null> {
     const findUser = this.users.find(user => user.email === email)
 
+    if (!findUser) {
+      return null
+    }
     return findUser
   }
 
   public async create (userData: ICreateUserDTO): Promise<User> {
     const user = new User()
 
-    Object.assign(user, { id: uuidv4(), userData })
+    Object.assign(user, { id: uuidv4() }, userData)
 
     this.users.push(user)
+
+    console.log(user)
 
     return user
   }

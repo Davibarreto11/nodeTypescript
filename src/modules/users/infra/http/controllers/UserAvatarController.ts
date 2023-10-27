@@ -1,13 +1,11 @@
 import { type Request, type Response } from 'express'
+import { container } from 'tsyringe'
 
-import UsersRepository from '../../typeorm/repositories/UsersRepository'
 import UploadUserAvatarService from '../../../services/UploadUserAvatarService'
-
-const usersRepository = new UsersRepository()
 
 class UserAvatarController {
   public async update (request: Request, response: Response): Promise<Response> {
-    const updateUserAvatar = new UploadUserAvatarService(usersRepository)
+    const updateUserAvatar = container.resolve(UploadUserAvatarService)
 
     const user = await updateUserAvatar.execute({
       user_id: request.user.id,

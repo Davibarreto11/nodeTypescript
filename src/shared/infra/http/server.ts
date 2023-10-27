@@ -9,6 +9,7 @@ import uploadConfig from '../../../config/upload'
 import AppError from '../../errors/AppError'
 
 import '../database'
+import '../../container'
 
 const app = express()
 

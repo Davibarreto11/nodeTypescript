@@ -1,12 +1,15 @@
-// import AppError from '../../../shared/errors/AppError'
+import AppError from '../../../shared/errors/AppError'
 
 import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository'
+import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider'
 import CreateUsersService from './CreateUsersServiece'
 
 describe('CreateUserService', () => {
   test('Should be able to create a new user', async () => {
     const fakeUsersRepository = new FakeUsersRepository()
-    const createUser = new CreateUsersService(fakeUsersRepository)
+    const fakeHashProvider = new FakeHashProvider()
+
+    const createUser = new CreateUsersService(fakeUsersRepository, fakeHashProvider)
 
     const user = await createUser.execute({
       name: 'John Doe',
@@ -17,22 +20,24 @@ describe('CreateUserService', () => {
     expect(user).toHaveProperty('id')
   })
 
-  // test('Should not be able to create new user with same email from another', async () => {
-  //   const fakeUsersRepository = new FakeUsersRepository()
-  //   const createUser = new CreateUsersService(fakeUsersRepository)
+  test('Should not be able to create new user with same email from another', async () => {
+    const fakeUsersRepository = new FakeUsersRepository()
+    const fakeHashProvider = new FakeHashProvider()
 
-  //   await createUser.execute({
-  //     name: 'John Doe',
-  //     email: 'email@mail.com',
-  //     password: '123456'
-  //   })
+    const createUser = new CreateUsersService(fakeUsersRepository, fakeHashProvider)
 
-  //   expect(
-  //     await createUser.execute({
-  //       name: 'Kennedy Duhn',
-  //       email: 'email@mail.com',
-  //       password: '987654'
-  //     })
-  //   ).rejects.toBeInstanceOf(AppError)
-  // })
+    await createUser.execute({
+      name: 'John Doe',
+      email: 'email@mail.com',
+      password: '123456'
+    })
+
+    expect(
+      await createUser.execute({
+        name: 'John Doe',
+        email: 'email@mail.com',
+        password: '123456'
+      })
+    ).rejects.toBeInstanceOf(AppError)
+  })
 })

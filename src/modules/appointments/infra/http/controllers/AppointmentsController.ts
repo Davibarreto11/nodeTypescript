@@ -1,21 +1,18 @@
 import { type Request, type Response } from 'express'
-
+import { container } from 'tsyringe'
 import CreateappointmentService from '../../../services/CreateAppointmentService'
-import AppointmentsRepository from '../../typeorm/repositories/AppointmentsRepository'
-
-const appointmentsRepository = new AppointmentsRepository()
+// import { parseISO } from 'date-fns'
 
 class AppointmentController {
   public async create (request: Request, response: Response): Promise<Response> {
     const {
-      date,
       provider_id
     } = request.body
 
-    const createappointment = new CreateappointmentService(appointmentsRepository)
+    const createappointment = container.resolve(CreateappointmentService)
 
     const appointment = await createappointment.execute({
-      date,
+      date: new Date(),
       provider_id
     })
 

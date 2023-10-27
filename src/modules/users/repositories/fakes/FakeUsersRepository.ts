@@ -11,6 +11,9 @@ class UsersRepository implements IUsersRepository {
   public async findById (id: string): Promise<User | undefined> {
     const findUser = this.users.find(user => user.id === id)
 
+    if (!findUser) {
+      return undefined
+    }
     return findUser
   }
 

@@ -1,6 +1,7 @@
 import { container } from 'tsyringe'
 
 import '../../modules/users/providers/HashProvider'
+import './providers/StorageProvider'
 
 import type IAppointmentsRepository from '../../modules/appointments/repositories/IAppointmentsRepository'
 import AppointmentsRepository from '../../modules/appointments/infra/typeorm/repositories/AppointmentsRepository'

@@ -1,6 +1,6 @@
 import { container } from 'tsyringe'
 
-import '../../modules/users/providers/HashProvider'
+import '../../modules/users/providers'
 import './providers/StorageProvider'
 
 import type IAppointmentsRepository from '../../modules/appointments/repositories/IAppointmentsRepository'

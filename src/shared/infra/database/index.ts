@@ -1,8 +1,6 @@
 import { DataSource } from 'typeorm'
 
-import CreateAppointments1695957180602 from './migrations/1696009232692-CreateAppointments'
-import { CreateUsers1696019680697 } from './migrations/1695019680691-CreateUsers'
-import { AddAvatarFieldToUsers1696039971100 } from './migrations/1696039971100-AddAvatarFieldToUsers'
+import { CreateUserTokens1698763393447 } from '../../infra/database/migrations/1698763393447-CreateUserTokens'
 
 import Appointment from '../../../modules/appointments/infra/typeorm/entities/Appointment'
 import User from '../../../modules/users/infra/typeorm/entities/User'
@@ -18,9 +16,7 @@ export const AppDataSource = new DataSource({
   logging: false,
   entities: [Appointment, User],
   migrations: [
-    CreateUsers1696019680697,
-    CreateAppointments1695957180602,
-    AddAvatarFieldToUsers1696039971100
+    CreateUserTokens1698763393447
   ]
 })
 

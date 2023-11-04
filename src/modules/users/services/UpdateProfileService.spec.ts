@@ -9,7 +9,7 @@ let fakeHashProvider: FakeHashProvider
 let fakeUsersRepository: FakeUsersRepository
 let updateProfileService: UpdateProfileService
 
-describe('', () => {
+describe('UpdateProfileService', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository()
     fakeHashProvider = new FakeHashProvider()
@@ -38,9 +38,9 @@ describe('', () => {
   })
 
   test('Should not be able if user non-existing', async () => {
-    expect(
-      await updateProfileService.execute({
-        user_id: '',
+    await expect(
+      updateProfileService.execute({
+        user_id: 'non-existing',
         name: 'Davi Artur',
         email: 'davi@gmail.com'
       })

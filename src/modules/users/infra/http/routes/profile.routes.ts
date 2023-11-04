@@ -9,7 +9,7 @@ const profileController = new ProfileController()
 
 profileRouter.use(ensureAuthenticated)
 
-profileRouter.post('/', profileController.update)
-profileRouter.patch('/:id', profileController.show)
+profileRouter.put('/update', profileController.update)
+profileRouter.patch('/list', profileController.show)
 
 export default profileRouter

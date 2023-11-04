@@ -1,7 +1,9 @@
 import { AppDataSource } from '../../../../../shared/infra/database'
-import { type Repository } from 'typeorm'
+import { Not, type Repository } from 'typeorm'
 
 import type IUsersRepository from '../../../repositories/IUsersRepository'
+
+import type IFindAllProvidersDTO from '../../../../../modules/users/dtos/IFindAllProvidersDTO'
 import type ICreateUserDTO from '../../../dtos/ICreateUserDTO'
 
 import User from '../entities/User'
@@ -25,6 +27,22 @@ class UsersRepository implements IUsersRepository {
     })
 
     return user
+  }
+
+  public async findAllProviders ({ except_user_id }: IFindAllProvidersDTO): Promise<User[]> {
+    let users: User[]
+
+    if (except_user_id) {
+      users = await this.ormRepository.find({
+        where: {
+          id: Not(except_user_id)
+        }
+      })
+    } else {
+      users = await this.ormRepository.find()
+    }
+
+    return users
   }
 
   public async create (

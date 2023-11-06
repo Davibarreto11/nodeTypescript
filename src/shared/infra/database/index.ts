@@ -1,7 +1,5 @@
 import { DataSource } from 'typeorm'
 
-import { CreateUserTokens1698763393447 } from '../../infra/database/migrations/1698763393447-CreateUserTokens'
-
 import Appointment from '../../../modules/appointments/infra/typeorm/entities/Appointment'
 import User from '../../../modules/users/infra/typeorm/entities/User'
 import UserToken from '../../../modules/users/infra/typeorm/entities/UserToken'
@@ -17,7 +15,7 @@ export const AppDataSource = new DataSource({
   logging: false,
   entities: [Appointment, User, UserToken],
   migrations: [
-    CreateUserTokens1698763393447
+
   ]
 })
 

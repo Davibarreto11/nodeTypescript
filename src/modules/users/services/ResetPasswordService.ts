@@ -10,6 +10,7 @@ import IHashProvider from '../providers/HashProvider/models/IHashProvider'
 interface IRequest {
   token: string
   password: string
+  password_confirmation: string
 }
 
 @injectable()
@@ -25,7 +26,7 @@ class ResetPasswordService {
     private readonly hashProvider: IHashProvider
   ) {}
 
-  public async execute ({ token, password }: IRequest): Promise<void> {
+  public async execute ({ token, password, password_confirmation }: IRequest): Promise<void> {
     const userToken = await this.usersTokenRepository.findByToken(token)
 
     if (!userToken) {

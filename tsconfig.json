@@ -10,6 +10,7 @@
       "./src/@types",
       "./node_modules/@types"
     ],
+    "allowJs": true,
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

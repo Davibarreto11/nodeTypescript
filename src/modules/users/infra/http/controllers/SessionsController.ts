@@ -1,5 +1,6 @@
 import { type Request, type Response } from 'express'
 import { container } from 'tsyringe'
+import { classToPlain } from 'class-transformer'
 
 import AuthenticateUserService from '../../../services/AuthenticateUserService'
 
@@ -14,7 +15,7 @@ class SessionController {
       password
     })
 
-    return response.json({ user, token })
+    return response.json({ user: classToPlain(user), token })
   }
 }
 

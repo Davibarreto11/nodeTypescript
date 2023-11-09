@@ -1,6 +1,8 @@
 import { type Request, type Response } from 'express'
 import { container } from 'tsyringe'
 
+import { classToPlain } from 'class-transformer'
+
 import UploadUserAvatarService from '../../../services/UploadUserAvatarService'
 
 class UserAvatarController {
@@ -12,7 +14,7 @@ class UserAvatarController {
       avatarFilename: request.file?.filename
     })
 
-    return response.json(user)
+    return response.json(classToPlain(user))
   }
 }
 

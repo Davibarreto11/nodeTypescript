@@ -1,6 +1,8 @@
 import { type Request, type Response } from 'express'
 import { container } from 'tsyringe'
 
+import { classToPlain } from 'class-transformer'
+
 import CreateUserService from '../../../services/CreateUsersServiece'
 
 class UsersController {
@@ -15,7 +17,7 @@ class UsersController {
       password
     })
 
-    return response.json(user)
+    return response.json(classToPlain(user))
   }
 }
 

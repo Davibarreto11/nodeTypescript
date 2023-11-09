@@ -1,6 +1,8 @@
 import { type Request, type Response } from 'express'
 import { container } from 'tsyringe'
 
+import { classToPlain } from 'class-transformer'
+
 import UpdateProfileService from '../../../services/UpdateProfileService'
 import ShowProfileService from '../../../services/ShowProfileService'
 
@@ -14,7 +16,7 @@ export default class ProfileController {
       user_id
     })
 
-    return response.json(user)
+    return response.json({ user: classToPlain(user) })
   }
 
   public async update (request: Request, response: Response): Promise<Response> {
@@ -31,6 +33,6 @@ export default class ProfileController {
       password
     })
 
-    return response.json(user)
+    return response.json(classToPlain(user))
   }
 }

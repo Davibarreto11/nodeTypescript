@@ -14,9 +14,7 @@ export const AppDataSource = new DataSource({
   synchronize: false,
   logging: false,
   entities: [Appointment, User, UserToken],
-  migrations: [
-
-  ]
+  migrations: []
 })
 
 AppDataSource.initialize()

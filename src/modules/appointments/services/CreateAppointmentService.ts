@@ -7,6 +7,7 @@ import type Appointment from '../infra/typeorm/entities/Appointment'
 
 import IAppointmentRepository from '../repositories/IAppointmentsRepository'
 import INotifcationRepository from '../../../modules/notifications/repositories/INotificationRepository'
+import ICacheProvider from '../../../shared/container/providers/CacheProvider/models/ICacheProvider'
 
 interface IRequest {
   provider_id: string
@@ -21,13 +22,14 @@ class CreateBetService {
     private readonly appointmentsRepository: IAppointmentRepository,
 
     @inject('NotificationsRepository')
-    private readonly notificationsRepository: INotifcationRepository
+    private readonly notificationsRepository: INotifcationRepository,
+
+    @inject('CacheProvider')
+    private readonly cacheProvider: ICacheProvider
   ) {}
 
   public async execute ({ date, provider_id, user_id }: IRequest): Promise<Appointment> {
     const appointmentDate = startOfHour(date)
-
-    console.log(appointmentDate)
 
     if (isBefore(appointmentDate, Date.now())) {
       throw new AppError("You can't create an appointment on past date.")
@@ -61,6 +63,12 @@ class CreateBetService {
       recipient_id: provider_id,
       content: `Novo agendamento para dia ${dateFormated}`
     })
+
+    await this.cacheProvider.invalidate(
+      `provider-appointments:${provider_id}:${format(appointmentDate, 'yyyy-M-d')}`
+    )
+
+    console.log(appointment)
 
     return appointment
   }

@@ -1,7 +1,6 @@
 import { type Request, type Response } from 'express'
 import { container } from 'tsyringe'
 import CreateappointmentService from '../../../services/CreateAppointmentService'
-import { parseISO } from 'date-fns'
 
 export default class AppointmentController {
   public async create (request: Request, response: Response): Promise<Response> {
@@ -11,12 +10,10 @@ export default class AppointmentController {
       date
     } = request.body
 
-    const parsedDate = parseISO(date)
-
     const createappointment = container.resolve(CreateappointmentService)
 
     const appointment = await createappointment.execute({
-      date: parsedDate,
+      date,
       provider_id,
       user_id
     })

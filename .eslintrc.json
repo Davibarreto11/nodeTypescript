@@ -18,6 +18,7 @@
     "@typescript-eslint/no-unused-vars": ["error", {
       "argsIgnorePattern": "_"
     }],
-    "@typescript-eslint/no-floating-promises": "off"
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/consistent-type-assertions": "off"
   }
 }

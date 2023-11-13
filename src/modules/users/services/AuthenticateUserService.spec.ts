@@ -2,12 +2,14 @@ import AppError from '../../../shared/errors/AppError'
 
 import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository'
 import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider'
+import FakeCacheProvider from '../../../shared/container/providers/CacheProvider/fakes/FakeCacheProvider'
 
 import AuthenticateUserService from './AuthenticateUserService'
 import CreateUserService from './CreateUsersServiece'
 
 let fakeUsersRepository: FakeUsersRepository
 let fakeHashProvider: FakeHashProvider
+let fakeCacheProvider: FakeCacheProvider
 let autheticateUser: AuthenticateUserService
 let createUser: CreateUserService
 
@@ -15,9 +17,14 @@ describe('AuthenticateUserService', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository()
     fakeHashProvider = new FakeHashProvider()
+    fakeCacheProvider = new FakeCacheProvider()
 
     autheticateUser = new AuthenticateUserService(fakeUsersRepository, fakeHashProvider)
-    createUser = new CreateUserService(fakeUsersRepository, fakeHashProvider)
+    createUser = new CreateUserService(
+      fakeUsersRepository,
+      fakeHashProvider,
+      fakeCacheProvider
+    )
   })
 
   test('Should be able to authenticate', async () => {

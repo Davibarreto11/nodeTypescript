@@ -68,8 +68,6 @@ class CreateBetService {
       `provider-appointments:${provider_id}:${format(appointmentDate, 'yyyy-M-d')}`
     )
 
-    console.log(appointment)
-
     return appointment
   }
 }

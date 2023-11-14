@@ -5,7 +5,7 @@ import AppError from '../../../shared/errors/AppError'
 import type User from '../infra/typeorm/entities/User'
 
 import IUsersRepository from '../repositories/IUsersRepository'
-import IStorageProvider from 'shared/container/providers/StorageProvider/models/IStorageProvider'
+import IStorageProvider from '../../../shared/container/providers/StorageProvider/models/IStorageProvider'
 
 interface IRequest {
   user_id: string

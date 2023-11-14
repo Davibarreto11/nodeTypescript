@@ -16,7 +16,7 @@ export default class ProfileController {
       user_id
     })
 
-    return response.json({ user: classToPlain(user) })
+    return response.json(classToPlain(user))
   }
 
   public async update (request: Request, response: Response): Promise<Response> {

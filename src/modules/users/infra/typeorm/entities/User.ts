@@ -34,7 +34,7 @@ class User {
 
   @Expose()
   get avatar_url (): string {
-    return `http://192.168.1.9:3333/files/${this.avatar}`
+    return `http://192.168.1.12:3333/files/${this.avatar}`
   }
 }
 

@@ -12,9 +12,9 @@ import Appointment from '../../infra/typeorm/entities/Appointment'
 class AppointmentsRepository implements IAppointmentsRepository {
   private readonly appointments: Appointment[] = []
 
-  public async findByDate (date: Date): Promise<Appointment | null> {
+  public async findByDate (date: Date, provider_id: string): Promise<Appointment | null> {
     const findAppointement = this.appointments.find(
-      appointment => isEqual(appointment.date, date)
+      appointment => isEqual(appointment.date, date) && appointment.provider_id === provider_id
     )
 
     if (!findAppointement) {

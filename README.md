@@ -80,3 +80,9 @@
 **RN**
 
 - A notificação deve ter um status de lida ou não lida para que o prestador possa controlar
+
+**TDD**
+
+![image](https://github.com/Davibarreto11/reactypescript/assets/102602408/61a2f4d9-5bd8-4a05-a2d5-ba49fc2545e6)
+![image](https://github.com/Davibarreto11/reactypescript/assets/102602408/2c5678cf-0d74-42f4-ba4f-898f7d8b23bf)
+
